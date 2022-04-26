@@ -18,7 +18,16 @@
                 </div>
   
                 <h2 class="entry-title">
-                  <a href="">{{ product.title }}</a>
+                  <div class="row">
+                    <div class="col">
+                      <a href="">{{ product.title }}</a>
+                    </div>
+                    <div class="col">
+                      <div class="col-6 text-end">
+                        <button type="button" id="add-button" value="{{product.id}}" class="btn btn-secondary btn-sm">Add to basket</button>
+                      </div>
+                    </div>
+                  </div>
                 </h2>
 
                 <div class="price">
@@ -275,4 +284,47 @@
     </section><!-- End Blog Single Section -->
 
 </main><!-- End #main -->
+
+<!--
+<script>
+  $(document).on('click', '#add-button', function (e) {       // function the someone clicked the button add-button
+        e.preventDefault();
+        $.ajax({                                                // ajax requets, send & return data to server
+            type: 'POST',                                       // what type of request is it
+            url: '{% url "basket:basket_add" %}',               // send data to basket:basket_add
+            data: {                                             // dta that gets send
+                productid: $('#add-button').val(),              // grab the value 
+                productqty:  $('#select option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",          // send csrf token
+                action: 'post'
+            },
+            success: function (json) {                          // responce if success
+              document.getElementById("basket-qty").innerHTML = json.qty
+            },
+            error: function (xhr, errmsg, err) {}               // responce if error
+        });
+    })
+</script>
+-->
+
+<script>
+  $(document).on('click', '#add-button', function (e) {       // function the someone clicked the button add-button
+      e.preventDefault();
+      $.ajax({                                                // ajax requets, send & return data to server
+          type: 'POST',                                       // what type of request is it
+          url: '{% url "basket:basket_add" %}',               // send data to basket:basket_add
+          data: {                                             // dta that gets send
+              productid: $('#add-button').val(),              // grab the value       
+              productqty: $('#select option:selected').text(),
+              csrfmiddlewaretoken: "{{csrf_token}}",          // send csrf token
+              action: 'post'
+          },
+          success: function (json) {                          // responce if success
+              document.getElementById("basket-qty").innerHTML = json.qty
+          },
+          error: function (xhr, errmsg, err) {}               // responce if error
+      });
+  })
+</script>
+
 {% endblock %}
