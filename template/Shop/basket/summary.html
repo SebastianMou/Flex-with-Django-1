@@ -6,7 +6,12 @@
 <main class="pt-5">
     <div class="container">
       {% if basket|length == 0 %}
-        <div class="col-12">you basket in empty <a href="{% url 'Shop:home' %}">Home</a></div>
+        <header class="section-header">
+          <img src="{% static 'img/empty-cart.png' %}" alt="basket" srcset="">
+          <h2>Tu canasta esta vacía :(</h2>
+          <h2 style="color: black;">Haga clic en Inicio para volver a la página principal</h2>
+          <a style="text-decoration: underline;" href="{% url 'Shop:home' %}">Inicio</a>
+        </header>
       {% else %}
       <h1 class="h5">Shopping basket</h1>
         {% for item in basket %}
@@ -41,32 +46,10 @@
         {% endfor %}
       {% endif %}
       <div class="col-12 text-end">
-        <div class="h6 fw-bold">Sub Total: MX<div id="subtotal" class="d-inline-flex">{{basket.get_total_price}}</div></div>
+        <h2 class="h6 fw-bold">Subtotal: MX $<div id="subtotal" class="d-inline-flex">{{basket.get_total_price}}</div></h2>
       </div>
     </div>
 </main>
-
-<!--
-<script>
-    $(document).on('click', '#delete-button', function (e) {       // function the someone clicked the button add-button
-        e.preventDefault();
-        $.ajax({                                                // ajax requets, send & return data to server
-            type: 'POST',                                       // what type of request is it
-            url: '{% url "basket:basket_delete" %}',               // send data to basket:basket_add
-            data: {                                             // dta that gets send
-                productid: $('#add-button').val(),              // grab the value 
-                csrfmiddlewaretoken: "{{csrf_token}}",          // send csrf token
-                action: 'post'
-            },
-            success: function (json) {                          // responce if success
-            },
-            error: function (xhr, errmsg, err) {}               // responce if error
-        });
-    })
-</script>
-
--->
-
 
 <script>
   // Delete Item
