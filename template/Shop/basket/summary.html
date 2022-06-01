@@ -35,7 +35,7 @@
                   <div class="row p-3">
                     <div class="col-12">
                         <button type="button" id="delete-button" data-index="{{product.id}}" class="btn btn-outline-secondary btn-sm delete-button">Delete</button>
-                        <a role="button" href="" class="btn btn-success fw-bold" type="button">Checkout</a>
+                        <a role="button" href="{% url 'payment:basket' %}" class="btn btn-success fw-bold" type="button">Checkout</a>
                     </div>
                   </div>
                 </div>

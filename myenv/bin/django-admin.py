@@ -1,4 +1,4 @@
-#!/home/sebastian/Flex-with-Django/myenv/bin/python3
+#!/home/sebastian/Flex-with-Django-1/myenv/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

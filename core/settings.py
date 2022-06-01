@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,7 +42,25 @@ INSTALLED_APPS = [
     'Shop',
     'basket',
     'account',
+    'payment',
 ]
+
+JAZZMIN_SETTINGS = {
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "/img/logo7png.png",
+    "welcome_sign": "Inicio de session",
+    "icons": {
+        "account.UserBase": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "Shop.Category": "fas fa-bars",
+        "Shop.Product": "fas fa-box",
+    },
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "theme": "lux",
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
