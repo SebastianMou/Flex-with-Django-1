@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 
 JAZZMIN_SETTINGS = {
     # Logo to use for your site, must be present in static files, used for brand on top left
-    "site_logo": "/img/logo7png.png",
+    "site_logo": "/img/logo7png(1).png",
     "welcome_sign": "Inicio de session",
     "icons": {
         "account.UserBase": "fas fa-user",
