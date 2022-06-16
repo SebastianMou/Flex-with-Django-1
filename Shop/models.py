@@ -2,6 +2,7 @@ from email.policy import default
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
+from tinymce import models as tinymce_models
 
 # Create your models here.
 class ProductManager(models.Manager):
@@ -26,7 +27,7 @@ class Product(models.Model):
     created_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='product_creator')
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, default='admin')
-    description = models.TextField(blank=True)
+    description = tinymce_models.HTMLField(blank=True)
     image = models.ImageField(upload_to='images/', default='images/default.png')
     slug = models.SlugField(max_length=255)
     price = models.DecimalField(max_digits=7, decimal_places=2)

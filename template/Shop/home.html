@@ -461,10 +461,11 @@
                         <div class="add-to-cart"><i class="bi bi-tags"></i><span>{{ prod.category }}</span></div>
                         <figcaption>
                         <h4>{{ prod.title }}</h4>
-                        <p>{{ prod.description|slice:":55" }}<p style="color: #4154F1;">mas...</p></p>
+                        <!--<p>{{ prod.description|safe|slice:":55" }}<p style="color: #4154F1;">mas...</p></p>-->
                         <div class="price">
                             <s>${{ prod.old_price }}</s>${{ prod.price }}
                         </div>
+                        <small>{{ prod.created }}</small>
                         </figcaption><a href="{{ prod.get_absolute_url }}"></a>
                     </figure>
                 </div>
