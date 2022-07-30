@@ -1,0 +1,45 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+    <!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio">
+
+        <div class="container" data-aos="fade-up">
+  
+          <header class="section-header">
+            <h2>plantillas</h2>
+            <p>Consulta nuestros últimos trabajos</p>
+          </header>
+  
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+              <ul id="portfolio-flters">
+                <li data-filter="*" class="filter-active">Todo</li>
+                <li data-filter=".filter-app">App</li>
+                <li data-filter=".filter-web">Web</li>
+              </ul>
+            </div>
+          </div>
+  
+          <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
+            {% for x in productplantillas %}
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <div class="portfolio-wrap">
+                <img src="{{ x.image_p0.url }}" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                  <h4>{{ x.title_p }}</h4>
+                  <p>{{ x.created_p }}</p>
+                  <div class="portfolio-links">
+                    <a href="{{ x.image_p0.url }}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="App 1"><i class="bi bi-plus"></i></a>
+                    <a href="{{ x.get_absolute_url }}" title="More Details"><i class="bi bi-link"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+  
+          </div>
+        </div>
+      </section><!-- End Portfolio Section -->
+{% endblock %}

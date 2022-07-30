@@ -436,15 +436,14 @@
               <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
-
         </div>
-
       </div>
-
-    </section><!-- End Services Section -->
+    </section>
 
 
     <!-- My Services cards -->
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
         <div class="container container-fluid">
             <br><br>
             <header class="section-header">
@@ -473,6 +472,16 @@
             </div>
             {% endif %}
         </div>
+        <br>
+        <div style="text-align: center;">
+          <a href="{% url 'Shop:freelancer' %}">
+            <button type="button" class="btn btn-outline-primary">
+              VER MAS <i class="bi bi-arrow-right"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    </section>
 
 
     <!-- ======= Pricing Section ======= -->
@@ -816,10 +825,18 @@
           </div>
 
         </div>
-
+        <br>
+        <div style="text-align: center;">
+          <a href="{% url 'Shop:plantillas' %}">
+            <button type="button" class="btn btn-outline-primary">
+              VER MAS <i class="bi bi-arrow-right"></i>
+            </button>
+          </a>
+        </div>
       </div>
-
     </section><!-- End Portfolio Section -->
+
+
 
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials">

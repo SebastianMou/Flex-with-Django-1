@@ -232,7 +232,7 @@
                 <div class="sidebar-item categories">
                   <ul>
                     {% for x in categories %}
-                        <li><a href="#">{{ x.name }}<span>(25)</span></a></li>
+                        <li><a href="{{ x.get_absolute_url }}">{{ x.name }}<span>(25)</span></a></li>
                     {% endfor %}
                   </ul>
                 </div><!-- End sidebar categories-->
@@ -242,7 +242,7 @@
                     {% for p in products %}
                         <div class="post-item clearfix">
                             <img src="{{ p.image.url }}" alt="">
-                            <h4><a href="blog-single.html">{{ p.title }}</a></h4>
+                            <h4><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></h4>
                             <time>{{ p.created }}</time>
                         </div>
                     {% endfor %}

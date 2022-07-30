@@ -1,0 +1,105 @@
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+
+<section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+        <div class="row container container">
+            <header class="section-header">
+                <h2>categorías</h2>
+            </header>
+            {% for c in categories %}
+            <div class="col">
+                <a href="{{ c.get_absolute_url }}">
+                    <div {% if category.slug == c.slug %}class="selected" {% endif %} class="alert alert-primary" role="alert">
+                        <h6>{{ c.name|title }}</h6>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</sebrtion>
+<hr>
+<section id="services" class="services">
+    <div class="container" data-aos="fade-up">
+      <div class="container container-fluid">
+          <br><br>
+          <header class="section-header">
+            <h2>Servicios</h2>
+          </header>
+          {% if not article %}
+              <div class="col-12">Actualmente no hay servicios activados</div>
+          {% else %}
+          <div class="row">
+              {% for prod in article %}
+              <div class="col">
+                  <figure class="snip1418"><img src="{{ prod.image.url }}" alt="sample85"/>
+                      <div class="add-to-cart"><i class="bi bi-tags"></i><span>{{ prod.category }}</span></div>
+                      <figcaption>
+                      <h4>{{ prod.title }}</h4>
+                      <!--<p>{{ prod.description|safe|slice:":55" }}<p style="color: #4154F1;">mas...</p></p>-->
+                      <div class="price">
+                          <s>${{ prod.old_price }}</s>${{ prod.price }}
+                      </div>
+                      <small>{{ prod.created }}</small>
+                      </figcaption><a href="{{ prod.get_absolute_url }}"></a>
+                  </figure>
+              </div>
+              {% endfor %}
+          </div>
+          {% endif %}   
+      </div>
+    </div>
+</section>
+
+<div class="container" data-aos="fade-up">
+    <div class="container d-flex align-items-center justify-content-center">
+        <nav aria-label="Pagination">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if article.has_previous  %}
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'Shop:freelancer' %}?page={{ article.previous_page_number }}" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% if article.number >= 4 %}
+                        <li class="page-item"><a class="page-link" href="?page=1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-left-square" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm10.096 8.803a.5.5 0 1 0 .707-.707L6.707 6h2.768a.5.5 0 1 0 0-1H5.5a.5.5 0 0 0-.5.5v3.975a.5.5 0 0 0 1 0V6.707l4.096 4.096z"/>
+                            </svg>
+                        </a></li>
+                    {% endif %}
+
+                    {% for num in article.paginator.page_range %}
+                        {% if article.number == num %}
+                            <li class="page-item active"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        {% elif num > article.number|add:'-3' and num < article.number|add:'3' %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if article.has_next %}
+                        <li class="page-item"><a class="page-link" href="{{ article.paginator.num_pages }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-right-square" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"/>
+                            </svg>
+                        </a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="{% url 'Shop:freelancer' %}?page={{ article.next_page_number }}" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </nav>
+    </div>
+</div>
+  
+
+{% endblock %}
